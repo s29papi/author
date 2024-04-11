@@ -12,7 +12,7 @@ export default function NavBar() {
     };
 
     return (
-        <IconContext.Provider value={{ size: "1.6em"}}>
+        <IconContext.Provider value={{ size: "1.6em", color: "white"}}>
             <div>
                 <div className='flex flex-row justify-between pl-12 pr-12 pt-10 pb-10'>
                     <div className='cursor-pointer text-white text-xl md:text-3xl md:pl-10 md:pt-10 md:pb-6 lg:pl-24'>
@@ -43,7 +43,7 @@ export default function NavBar() {
                 </div>
                 <div>
                      {isMenuOpen && (
-                        <div className='min-h-65 border-4 border-[#1c1a1f] rounded-[25px]' style={{backgroundColor: '#1c1a1f'}}>
+                        <div className='min-h-65 border-4 border-[#1c1a1f]  text-white rounded-[25px]' style={{backgroundColor: '#1c1a1f'}}>
                             <ul className='text-lg p-16'>
                                 <li className='cursor-pointer flex justify-center'>Trending</li>
                                 <li className='cursor-pointer flex justify-center p-4'>Recommend</li>
