@@ -4,7 +4,7 @@ import { AuthKitProvider} from '@farcaster/auth-kit';
 import NavBar from "./components/NavBar";
 import Header from "./components/Header";
 import Box from "./components/Box";
-import { main } from 'ts-node/dist/bin';
+
 
 {/**
   1. NavBar: A responsive navigation bar
