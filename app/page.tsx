@@ -23,10 +23,12 @@ const config = {
 export default function Home() {
   return (
     <main>
-      <div className='flex flex-col min-h-screen' style={{backgroundColor: '#131115'}}>
-      <NavBar/>
-      <Header/>
-      </div>
+      <AuthKitProvider config={config}>
+        <div className='flex flex-col min-h-screen' style={{backgroundColor: '#131115'}}>
+          <NavBar/>
+          <Header/>
+        </div>
+      </AuthKitProvider>
     </main>
   );
 }
