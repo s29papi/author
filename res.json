@@ -1,0 +1,161 @@
+{
+    "cast": {
+      "object": "cast",
+      "hash": "0x1e528b90f58c6d39dd80c19e09bc2442f24466fd",
+      "thread_hash": "0xe0977d1c15231e6d6675741f40d17f141df8e5d0",
+      "parent_hash": "0xe0977d1c15231e6d6675741f40d17f141df8e5d0",
+      "parent_url": null,
+      "root_parent_url": "https://www.bountycaster.xyz",
+      "parent_author": {
+        "fid": 11528
+      },
+      "author": {
+        "object": "user",
+        "fid": 20596,
+        "custody_address": "0xeb5beb418929eb668226de9184d9dc5fc822b00f",
+        "username": "bountybot",
+        "display_name": "Bounty Bot",
+        "pfp_url": "https://i.imgur.com/dKjl21l.jpg",
+        "profile": {
+          "bio": {
+            "text": "Post bounties and services on Farcaster by tagging me (bountycaster.xyz) /bounties",
+            "mentioned_profiles": []
+          }
+        },
+        "follower_count": 2894,
+        "following_count": 0,
+        "verifications": [
+          "0x7ee704db4e0d75342e22fe5b080baa089564bd3b"
+        ],
+        "verified_addresses": {
+          "eth_addresses": [
+            "0x7ee704db4e0d75342e22fe5b080baa089564bd3b"
+          ],
+          "sol_addresses": []
+        },
+        "active_status": "inactive",
+        "power_badge": false
+      },
+      "text": "Confirmed! On your bounty page, you can pay users and view their bounty completion history\n\nYour 🤖 status commands\n- @bountybot cancel\n- @bountybot in progress\n- @bountybot complete (optional: tag winners)",
+      "timestamp": "2024-03-28T01:08:42.000Z",
+      "embeds": [
+        {
+          "url": "https://www.bountycaster.xyz/bounty/0xe0977d1c15231e6d6675741f40d17f141df8e5d0?widget=fc-2024-02-21"
+        }
+      ],
+      "frames": [
+        {
+          "version": "vNext",
+          "title": "50,000 $degen bounty by @jrf | Bountycaster",
+          "image": "https://www.bountycaster.xyz/bounty/0xe0977d1c15231e6d6675741f40d17f141df8e5d0/thumbs/frame.png?time=1711674712",
+          "buttons": [
+            {
+              "index": 1,
+              "title": "View",
+              "action_type": "link",
+              "target": "https://www.bountycaster.xyz/bounty/0xe0977d1c15231e6d6675741f40d17f141df8e5d0"
+            },
+            {
+              "index": 2,
+              "title": "Admin",
+              "action_type": "post"
+            }
+          ],
+          "input": {},
+          "state": {},
+          "post_url": "https://www.bountycaster.xyz/api/v1/bounty/0xe0977d1c15231e6d6675741f40d17f141df8e5d0/frame?widget=fc-2024-02-21",
+          "frames_url": "https://www.bountycaster.xyz/bounty/0xe0977d1c15231e6d6675741f40d17f141df8e5d0?widget=fc-2024-02-21"
+        }
+      ],
+      "reactions": {
+        "likes": [],
+        "recasts": []
+      },
+      "replies": {
+        "count": 0
+      },
+      "mentioned_profiles": [
+        {
+          "object": "user",
+          "fid": 20596,
+          "custody_address": "0xeb5beb418929eb668226de9184d9dc5fc822b00f",
+          "username": "bountybot",
+          "display_name": "Bounty Bot",
+          "pfp_url": "https://i.imgur.com/dKjl21l.jpg",
+          "profile": {
+            "bio": {
+              "text": "Post bounties and services on Farcaster by tagging me (bountycaster.xyz) /bounties",
+              "mentioned_profiles": []
+            }
+          },
+          "follower_count": 2894,
+          "following_count": 0,
+          "verifications": [
+            "0x7ee704db4e0d75342e22fe5b080baa089564bd3b"
+          ],
+          "verified_addresses": {
+            "eth_addresses": [
+              "0x7ee704db4e0d75342e22fe5b080baa089564bd3b"
+            ],
+            "sol_addresses": []
+          },
+          "active_status": "inactive",
+          "power_badge": false
+        },
+        {
+          "object": "user",
+          "fid": 20596,
+          "custody_address": "0xeb5beb418929eb668226de9184d9dc5fc822b00f",
+          "username": "bountybot",
+          "display_name": "Bounty Bot",
+          "pfp_url": "https://i.imgur.com/dKjl21l.jpg",
+          "profile": {
+            "bio": {
+              "text": "Post bounties and services on Farcaster by tagging me (bountycaster.xyz) /bounties",
+              "mentioned_profiles": []
+            }
+          },
+          "follower_count": 2894,
+          "following_count": 0,
+          "verifications": [
+            "0x7ee704db4e0d75342e22fe5b080baa089564bd3b"
+          ],
+          "verified_addresses": {
+            "eth_addresses": [
+              "0x7ee704db4e0d75342e22fe5b080baa089564bd3b"
+            ],
+            "sol_addresses": []
+          },
+          "active_status": "inactive",
+          "power_badge": false
+        },
+        {
+          "object": "user",
+          "fid": 20596,
+          "custody_address": "0xeb5beb418929eb668226de9184d9dc5fc822b00f",
+          "username": "bountybot",
+          "display_name": "Bounty Bot",
+          "pfp_url": "https://i.imgur.com/dKjl21l.jpg",
+          "profile": {
+            "bio": {
+              "text": "Post bounties and services on Farcaster by tagging me (bountycaster.xyz) /bounties",
+              "mentioned_profiles": []
+            }
+          },
+          "follower_count": 2894,
+          "following_count": 0,
+          "verifications": [
+            "0x7ee704db4e0d75342e22fe5b080baa089564bd3b"
+          ],
+          "verified_addresses": {
+            "eth_addresses": [
+              "0x7ee704db4e0d75342e22fe5b080baa089564bd3b"
+            ],
+            "sol_addresses": []
+          },
+          "active_status": "inactive",
+          "power_badge": false
+        }
+      ]
+    }
+  }
