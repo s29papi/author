@@ -31,14 +31,3 @@ export default function Home() {
   );
 }
 
-{/* <main className="flex min-h-screen flex-col items-center justify-between p-24 py-0" style={{backgroundColor: '#131115'}}>
-<AuthKitProvider config={config}>
-  <div className='my-2'>
-   <NavBar/>
-   <Header/>
-   <Box/>
-  </div>
-
-
-</AuthKitProvider>
-</main> */}
