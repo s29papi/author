@@ -15,7 +15,7 @@ export default function NavBar() {
         <IconContext.Provider value={{ size: "1.6em"}}>
             <div>
                 <div className='flex flex-row justify-between pl-12 pr-12 pt-10 pb-10'>
-                    <div className='cursor-pointer text-xl md:text-3xl md:pl-10 md:pt-10 md:pb-6 lg:pl-24'>
+                    <div className='cursor-pointer text-white text-xl md:text-3xl md:pl-10 md:pt-10 md:pb-6 lg:pl-24'>
                         ATLAS
                     </div>
 
