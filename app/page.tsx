@@ -16,7 +16,7 @@ import Box from "./components/Box";
 const config = {
   rpcUrl: 'https://opt-mainnet.g.alchemy.com/v2/WYqLLFC8PL_vzejykc3fwfS_JpbvpI66',
   siweUri: "https://example.com/login",
-  domain: "example.com",
+  domain: "author-pi.vercel.app",
   relay: 'https://relay.farcaster.xyz',
 };
 
