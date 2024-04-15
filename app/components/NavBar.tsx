@@ -84,9 +84,9 @@ export default function NavBar({ onFidChange }: NavBarProps) {
             return
         }
         
-        // if (localStorage.getItem('justSignedIn') == "false") {
-        //     setIsProfileButtonClicked(true) 
-        // } 
+        if (localStorage.getItem('justSignedIn') == "false") {
+            setIsProfileButtonClicked(true) 
+        } 
     }
 
     return (
