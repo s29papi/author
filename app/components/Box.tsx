@@ -109,7 +109,7 @@ export default function Box({routeName}: BoxProps) {
                 <div className='flex flex-row space-x-[6px] justify-center'>
                     <div className={`pb-2 ${pageIdx === 0 ? 'text-gray-500' : ''}`} onClick={handleLeftArrowClick}>{"<"}</div>
 
-                    <div className='flex flex-row space-x-[6px] justify-center '>
+                    <div className='flex flex-row space-x-[6px] justify-center text-white'>
                         {arrNo.map((x, index) => (
                             <div className={`pt-[0.4px] ${pageIdx === index ? 'text-gray-500 underline' : ''}`} key={index} onClick={() => handleNumberClick(index)}>
                                 {x}
