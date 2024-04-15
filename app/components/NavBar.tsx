@@ -53,9 +53,6 @@ export default function NavBar({ onFidChange }: NavBarProps) {
             localStorage.setItem('fid', fid.toString());
         }
 
-        console.log(localStorage.getItem('username'))
-        console.log(localStorage.getItem('pfpUrl'))
-        console.log(localStorage.getItem('fid'))
         if (fid && username && pfpUrl) {
             setProfileArray([pfpUrl, username, fid]);
         }

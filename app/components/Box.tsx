@@ -97,7 +97,7 @@ export default function Box({routeName}: BoxProps) {
                             </div>
                         </div>
                         <div className="border-x border-y border-white/20">
-                            <div className="flex flex-col justify-center p-3">
+                            <div className="flex flex-col justify-center p-3 text-white">
                                 <div className="flex justify-start text-[13px]">{y.frames[0].title || 'No Title Frame'}</div>
                                 <div className="flex justify-start pt-3 text-[10px] text-gray-400">{getFormattedTimestamp(y.timestamp)} by @{y.author.username}</div>
                                 <div className="flex justify-start text-[12px]">{trimText(y.text)}</div>
