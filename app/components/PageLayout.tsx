@@ -44,12 +44,14 @@ export default function PageLayout({ routeName }: PageLayoutProps) {
         setFid(newFid);
     };
     
+    
+    
     return (      
             <AuthKitProvider config={config}>
                 <div className='flex flex-col min-h-screen' style={{backgroundColor: '#131115'}}>
                     <NavBar onFidChange={handleFidChange}/>
                     <Header/>
-                    <Box routeName={routeName} fid={fid}/>
+                    <Box routeName={routeName} />
                 </div>
             </AuthKitProvider>
     )

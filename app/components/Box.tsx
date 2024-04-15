@@ -7,23 +7,30 @@ const imageLoader = ({ src, width, quality }: any) => {
 
 interface BoxProps {
     routeName: string;
-    fid: number;
+
   }
   
 
-export default function Box({routeName, fid}: BoxProps) {
+export default function Box({routeName}: BoxProps) {
     const [boxes, setBoxes] = useState<any[]>([]);
     const [ pageIdx, setPageIdx ] = useState(0) 
     const [startIndex, setStartIndex] = useState(0);
-    
+  
     useEffect(() => {
         (async () => {
             try {
+                const fidStr = localStorage.getItem('fid')
+                let fid = 0;
+                if (fidStr) {
+                    fid = parseInt(fidStr)
+                }
+                console.log(fid)
+                
                 if (routeName == '/') {
                     let frames = await getTrendingFrames()
                     setBoxes(frames)
                 }
-
+            
                 if (routeName == '/recommend' && fid > 0) {
                     let frames = await getRecommendedFrames(fid)
                     setBoxes(frames)
@@ -33,7 +40,7 @@ export default function Box({routeName, fid}: BoxProps) {
                 return false;
             }
         })();
-    }, [routeName, fid]);
+    }, [routeName]);
 
     const totalPages = Math.ceil(boxes.length / 20);
 
@@ -190,6 +197,7 @@ async function getRecommendedFrames(fid: number) {
             trendingCastsByFollowing.push(trendingCasts.casts[i])
         }
     }
+
     if (trendingCastsByFollowing.length == 0) return [];
 
     trendingCasts.casts = trendingCastsByFollowing;
