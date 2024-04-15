@@ -1,35 +1,11 @@
 'use client';
-import '@farcaster/auth-kit/styles.css';
-import { AuthKitProvider} from '@farcaster/auth-kit';
-import NavBar from "./components/NavBar";
-import Header from "./components/Header";
-import Box from "./components/Box";
 
-
-{/**
-  1. NavBar: A responsive navigation bar
-  2. Header
-  3. Box/Dynamic Card Box
-  4. Footer
-*/}
-
-const config = {
-  rpcUrl: 'https://opt-mainnet.g.alchemy.com/v2/WYqLLFC8PL_vzejykc3fwfS_JpbvpI66',
-  siweUri: "https://example.com/login",
-  domain: "author-pi.vercel.app",
-  relay: 'https://relay.farcaster.xyz',
-};
+import PageLayout from "./components/PageLayout";
 
 export default function Home() {
-  return (
-    <main>
-      <AuthKitProvider config={config}>
-        <div className='flex flex-col min-h-screen' style={{backgroundColor: '#131115'}}>
-          <NavBar/>
-          <Header/>
-        </div>
-      </AuthKitProvider>
-    </main>
-  );
+ return (
+   <main>
+      <PageLayout routeName="/"/>
+   </main>
+ )
 }
-
