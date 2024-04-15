@@ -59,6 +59,9 @@ export default function NavBar({ onFidChange }: NavBarProps) {
 
     const handleSignOut = () => {
         localStorage.removeItem('authToken');
+        localStorage.removeItem('username');
+        localStorage.removeItem('pfpUrl');
+        localStorage.removeItem('fid');
         setIsSignedIn(false);
     };
 
@@ -70,9 +73,6 @@ export default function NavBar({ onFidChange }: NavBarProps) {
         
         if (localStorage.getItem('justSignedIn')) {
             localStorage.removeItem('justSignedIn');
-            localStorage.removeItem('username');
-            localStorage.removeItem('pfpUrl');
-            localStorage.removeItem('fid');
             return
         }
         
