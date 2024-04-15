@@ -224,6 +224,7 @@ async function getRecommendedFrames(fid: number) {
 
 async function getTrendingFrames() {
     let trendingCasts = await fetchTrendingCasts();
+    
       
     trendingCasts.casts = trendingCasts.casts.filter((cast: any) => {
         const excludedDomains = [
@@ -238,11 +239,28 @@ async function getTrendingFrames() {
         if (cast.embeds[0].url === undefined) {
             return false
         }
-        const url = new URL(cast.embeds[0].url);
+        const validUrl = makeValidUrl(cast.embeds[0].url);
+        if (!isValidUrl(validUrl)) {
+            return
+        }
+        const url = new URL(validUrl);
         return !excludedDomains.includes(url.hostname.split('.').slice(-2).join('.'));
     });
 
     trendingCasts.casts.sort((a: any, b: any) => b.reactions.likes.length - a.reactions.likes.length);
 
     return trendingCasts.casts
+}
+
+function makeValidUrl(url: string) {
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        return `https://${url}`;
+    }
+    return url;
+}
+
+
+function isValidUrl(url: string) {
+    const pattern = /^(?:https?|ftp):\/\/[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=%]+$/;
+    return pattern.test(url);
 }
