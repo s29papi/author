@@ -60,7 +60,6 @@ export default function NavBar({ onFidChange }: NavBarProps) {
             setProfileArray([pfpUrl, username, fid]);
         }
         localStorage.setItem('justSignedIn', "true")
-        console.log(localStorage.getItem('justSignedIn'))
     };
 
     const handleSignOut = () => {
@@ -76,17 +75,19 @@ export default function NavBar({ onFidChange }: NavBarProps) {
             setIsProfileButtonClicked(false)
             return
         }
-        console.log(localStorage.getItem('justSignedIn'))
+        
         if (localStorage.getItem('justSignedIn') == "true") {
-            console.log(localStorage.getItem('justSignedIn'))
             localStorage.removeItem('justSignedIn');
             localStorage.setItem('justSignedIn', "false")
             return
         }
         
-        if (localStorage.getItem('justSignedIn') == "falsed") {
+        if (localStorage.getItem('justSignedIn') == "false") {
+            localStorage.removeItem('justSignedIn');
+            return
+        } else {
             setIsProfileButtonClicked(true) 
-        } 
+        }
     }
 
     return (
