@@ -107,7 +107,7 @@ export default function Box({routeName}: BoxProps) {
                 ))}
 
                 <div className='flex flex-row space-x-[6px] justify-center'>
-                    <div className={`pb-2 ${pageIdx === 0 ? 'text-gray-500' : ''}`} onClick={handleLeftArrowClick}>{"<"}</div>
+                    <div className={`pb-2 ${pageIdx === 0 ? 'text-gray-500' : 'text-white'}`} onClick={handleLeftArrowClick}>{"<"}</div>
 
                     <div className='flex flex-row space-x-[6px] justify-center text-white'>
                         {arrNo.map((x, index) => (
@@ -117,7 +117,7 @@ export default function Box({routeName}: BoxProps) {
                         ))}
                     </div>
 
-                    <div className={`pb-2 ${pageIdx + 1 === totalPages ? 'text-gray-500' : ''}`}  onClick={handleRightArrowClick}>{">"}</div>
+                    <div className={`pb-2 ${pageIdx + 1 === totalPages ? 'text-gray-500' : 'text-white'}`}  onClick={handleRightArrowClick}>{">"}</div>
                 </div>
              </div>
         </div>
