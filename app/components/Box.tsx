@@ -42,9 +42,21 @@ export default function Box({routeName}: BoxProps) {
         })();
     }, [routeName]);
 
+    
     const totalPages = Math.ceil(boxes.length / 20);
-
+    const remainingBoxes = boxes.length % 20;
+    console.log(totalPages)
+    console.log(boxes.length)
+    console.log(remainingBoxes)
     const arrNo = Array.from({ length: totalPages }, (_, index) => index + 1);
+
+    const boxesPerPage = (pageIndex: number) => {
+        if (pageIndex < totalPages - 1) {
+          return 20; 
+        } else {
+          return remainingBoxes; 
+        }
+      };
 
 
     const handleNumberClick = (index: number) => {
@@ -78,7 +90,7 @@ export default function Box({routeName}: BoxProps) {
             min-[414px]:pl-12 min-[414px]:pr-[53px] min-[430px]:pl-12 min-[430px]:pr-[53px] min-[540px]:pl-12 min-[540px]:pr-[53px] 
             min-[768px]:pl-[84px] min-[768px]:pr-[84px] min-[820px]:pl-[84px] min-[820px]:pr-[84px] min-[1024px]:pl-[140px] min-[1024px]:pr-[158px]">
                
-                {boxes.slice(startIndex, startIndex + 40).map((y, index) => (
+               {boxes.slice(startIndex, startIndex + boxesPerPage(pageIdx)).map((y, index) => (
                     <div key={index}>
                         <div className="border-x border-t border-white/20">
                             <div className="flex justify-center bg-[#C6C8C3] ">
