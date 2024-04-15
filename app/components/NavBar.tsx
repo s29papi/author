@@ -76,13 +76,15 @@ export default function NavBar({ onFidChange }: NavBarProps) {
             setIsProfileButtonClicked(false)
             return
         }
-    
-        if (localStorage.getItem('justSignedIn')) {
+        console.log(localStorage.getItem('justSignedIn'))
+        if (localStorage.getItem('justSignedIn') == "true") {
+            console.log(localStorage.getItem('justSignedIn'))
             localStorage.removeItem('justSignedIn');
+            localStorage.setItem('justSignedIn', "false")
             return
         }
-
-        if (!localStorage.getItem('justSignedIn')) {
+        
+        if (localStorage.getItem('justSignedIn') == "false") {
             setIsProfileButtonClicked(true) 
         } 
     }
@@ -123,7 +125,7 @@ export default function NavBar({ onFidChange }: NavBarProps) {
                                                         }}
                                                     />
                                                 </div>
-                                    ss
+                                
                                                 <div>{profileArray[1]}</div>
                                         </div>
 
@@ -171,7 +173,6 @@ export default function NavBar({ onFidChange }: NavBarProps) {
                                                             }}
                                                         />
                                                     </div>
-                                        <div>djdjdj</div>
                                                     <div>{profileArray[1]}</div>
                                             </div>
     
