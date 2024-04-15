@@ -19,8 +19,7 @@ export default function NavBar({ onFidChange }: NavBarProps) {
     const [isProfileButtonClicked, setIsProfileButtonClicked] = useState(false);
     const [profileArray, setProfileArray] = useState<any[]>([]);
     const {
-        // isAuthenticated,
-        profile: { username, bio, displayName, pfpUrl },
+        profile: { username, pfpUrl },
       } = useProfile();
 
     useEffect(() => {
@@ -54,7 +53,14 @@ export default function NavBar({ onFidChange }: NavBarProps) {
             localStorage.setItem('fid', fid.toString());
         }
 
+        console.log(localStorage.getItem('username'))
+        console.log(localStorage.getItem('pfpUrl'))
+        console.log(localStorage.getItem('fid'))
+        if (fid && username && pfpUrl) {
+            setProfileArray([pfpUrl, username, fid]);
+        }
         localStorage.setItem('justSignedIn', "true")
+        console.log(localStorage.getItem('justSignedIn'))
     };
 
     const handleSignOut = () => {
@@ -70,13 +76,15 @@ export default function NavBar({ onFidChange }: NavBarProps) {
             setIsProfileButtonClicked(false)
             return
         }
-        
+    
         if (localStorage.getItem('justSignedIn')) {
             localStorage.removeItem('justSignedIn');
             return
         }
-        
-        setIsProfileButtonClicked(true)  
+
+        if (!localStorage.getItem('justSignedIn')) {
+            setIsProfileButtonClicked(true) 
+        } 
     }
 
     return (
@@ -115,7 +123,7 @@ export default function NavBar({ onFidChange }: NavBarProps) {
                                                         }}
                                                     />
                                                 </div>
-                                    
+                                    ss
                                                 <div>{profileArray[1]}</div>
                                         </div>
 
@@ -163,7 +171,7 @@ export default function NavBar({ onFidChange }: NavBarProps) {
                                                             }}
                                                         />
                                                     </div>
-                                        
+                                        <div>djdjdj</div>
                                                     <div>{profileArray[1]}</div>
                                             </div>
     
