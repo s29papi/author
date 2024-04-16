@@ -94,7 +94,7 @@ export default function Box({routeName}: BoxProps) {
             min-[820px]:pl-[84px] min-[820px]:pr-[84px] 
             min-[1024px]:pl-[140px] min-[1024px]:pr-[158px]">
 
-               <div className='grid grid-cols-1 gap-8
+               <div className='grid grid-cols-1 gap-8  
                     min-[280px]:grid min-[280px]:grid-cols-1
                     min-[360px]:grid min-[360px]:grid-cols-1
                     min-[375px]:grid min-[375px]:grid-cols-1
@@ -105,11 +105,11 @@ export default function Box({routeName}: BoxProps) {
                     min-[540px]:grid min-[540px]:grid-cols-1
                     min-[768px]:grid min-[768px]:grid-cols-2
                     min-[820px]:grid min-[820px]:grid-cols-2
-                    min-[1024px]:grid min-[1024px]:grid-cols-3
+                    min-[1024px]:grid min-[1024px]:grid-cols-3 justify-center
                     
                '>
                         {boxes.slice(startIndex, startIndex + boxesPerPage(pageIdx)).map((y, index) => (
-                            <div key={index} >
+                            <div key={index} className='' >
                                 <div className="border-x border-t border-white/20 w-70 h-64">
                                     <div className="flex justify-center bg-[#C6C8C3] w-full h-full">
                                         <div className="border-[38px] border-[#C6C8C3] ">
@@ -143,7 +143,9 @@ export default function Box({routeName}: BoxProps) {
                             </div>
                         ))}
 
-                    <div className='flex flex-row space-x-[6px] justify-center'>
+    
+               </div>
+               <div className='flex flex-row space-x-[6px] justify-center pt-[24px]'>
                         <div className={`pb-2 ${pageIdx === 0 ? 'text-gray-500' : 'text-white'}`} onClick={handleLeftArrowClick}>{"<"}</div>
 
                         <div className='flex flex-row space-x-[6px] justify-center text-white'>
@@ -156,8 +158,6 @@ export default function Box({routeName}: BoxProps) {
 
                         <div className={`pb-2 ${pageIdx + 1 === totalPages ? 'text-gray-500' : 'text-white'}`}  onClick={handleRightArrowClick}>{">"}</div>
                     </div>
-               </div>
-
              </div>
         </div>
 
@@ -218,7 +218,6 @@ function trimText(text: string) {
     return trimmedSentence;
 }
 
-// write a filter 
 async function getRecommendedFrames(fid: number) {
     let trendingCasts = await fetchTrendingCasts();
     let trendingCastsByFollowing= [];
