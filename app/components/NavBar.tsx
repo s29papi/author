@@ -84,7 +84,9 @@ export default function NavBar({ onFidChange }: NavBarProps) {
     return (
         <IconContext.Provider value={{ size: "1.6em", color: "white"}}>
             <div style={{ position: "fixed", width: "100%", zIndex: 1000, backgroundColor: "#131115"}}>
-                <div className='flex flex-row justify-between pl-12 pr-12 pt-10 pb-10'>
+                <div className='flex flex-row justify-between pl-12 pr-12 pt-10 pb-10
+                min-[768px]:pt-2 min-[768px]:pb-2
+                '>
                     <div className='cursor-pointer text-white text-xl md:text-3xl md:pl-10 md:pt-10 md:pb-6 lg:pl-24'>
                         ATLAS
                     </div>

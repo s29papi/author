@@ -7,8 +7,7 @@ const imageLoader = ({ src, width, quality }: any) => {
 
 interface BoxProps {
     routeName: string;
-
-  }
+}
   
 
 export default function Box({routeName}: BoxProps) {
@@ -45,9 +44,6 @@ export default function Box({routeName}: BoxProps) {
     
     const totalPages = Math.ceil(boxes.length / 20);
     const remainingBoxes = boxes.length % 20;
-    console.log(totalPages)
-    console.log(boxes.length)
-    console.log(remainingBoxes)
     const arrNo = Array.from({ length: totalPages }, (_, index) => index + 1);
 
     const boxesPerPage = (pageIndex: number) => {
@@ -85,52 +81,83 @@ export default function Box({routeName}: BoxProps) {
     
     return (
         <div style={{paddingTop: '108px'}}>
-            <div className="grid grid-cols-1 space-y-[43px] min-[280px]:pl-12 min-[280px]:pr-[53px] min-[360px]:pl-12 min-[360px]:pr-[53px] 
-            min-[375px]:pl-12 min-[375px]:pr-[53px] min-[390px]:pl-12 min-[390px]:pr-[53px] min-[412px]:pl-12 min-[412px]:pr-[53px] 
-            min-[414px]:pl-12 min-[414px]:pr-[53px] min-[430px]:pl-12 min-[430px]:pr-[53px] min-[540px]:pl-12 min-[540px]:pr-[53px] 
-            min-[768px]:pl-[84px] min-[768px]:pr-[84px] min-[820px]:pl-[84px] min-[820px]:pr-[84px] min-[1024px]:pl-[140px] min-[1024px]:pr-[158px]">
-               
-               {boxes.slice(startIndex, startIndex + boxesPerPage(pageIdx)).map((y, index) => (
-                    <div key={index}>
-                        <div className="border-x border-t border-white/20">
-                            <div className="flex justify-center bg-[#C6C8C3] ">
-                                <div className="border-[38px] border-[#C6C8C3] ">
-                                    <div className='shadow-2xl'>
-                                    <Image 
-                                        loader={imageLoader}
-                                        src={y.frames[0].image}
-                                        alt="Picture of the author"
-                                        width={500}
-                                        height={500}
-                                    />
+            <div className="
+            min-[280px]:pl-12 min-[280px]:pr-[53px]
+            min-[360px]:pl-12 min-[360px]:pr-[53px] 
+            min-[375px]:pl-12 min-[375px]:pr-[53px] 
+            min-[390px]:pl-12 min-[390px]:pr-[53px] 
+            min-[412px]:pl-12 min-[412px]:pr-[53px] 
+            min-[414px]:pl-12 min-[414px]:pr-[53px] 
+            min-[430px]:pl-12 min-[430px]:pr-[53px]
+            min-[540px]:pl-12 min-[540px]:pr-[53px] 
+            min-[768px]:pl-[84px] min-[768px]:pr-[84px]
+            min-[820px]:pl-[84px] min-[820px]:pr-[84px] 
+            min-[1024px]:pl-[140px] min-[1024px]:pr-[158px]">
+
+               <div className='grid grid-cols-1 gap-8
+                    min-[280px]:grid min-[280px]:grid-cols-1
+                    min-[360px]:grid min-[360px]:grid-cols-1
+                    min-[375px]:grid min-[375px]:grid-cols-1
+                    min-[390px]:grid min-[390px]:grid-cols-1
+                    min-[412px]:grid min-[412px]:grid-cols-1
+                    min-[414px]:grid min-[414px]:grid-cols-1
+                    min-[430px]:grid min-[430px]:grid-cols-1
+                    min-[540px]:grid min-[540px]:grid-cols-1
+                    min-[768px]:grid min-[768px]:grid-cols-2
+                    min-[820px]:grid min-[820px]:grid-cols-2
+                    min-[1024px]:grid min-[1024px]:grid-cols-3
+                    
+               '>
+                        {boxes.slice(startIndex, startIndex + boxesPerPage(pageIdx)).map((y, index) => (
+                            <div key={index} >
+                                <div className="border-x border-t border-white/20 w-70 h-64">
+                                    <div className="flex justify-center bg-[#C6C8C3] w-full h-full">
+                                        <div className="border-[38px] border-[#C6C8C3] ">
+                                            <div className='flex shadow-2xl w-full h-full'>
+                                            <Image 
+                                                loader={imageLoader}
+                                                src={y.frames[0].image}
+                                                alt="Picture of the author"
+                                                width={250}
+                                                height={250}
+                                                layout="responsive"
+                                            />
+                                            </div>
+                                        
+                                        </div>
                                     </div>
-                                
+                                </div>
+                                <div className="border-x border-y border-white/20 w-70 h-24">
+                                    <div className="flex flex-col justify-center p-3 text-white ">
+                                        <div className="flex justify-start text-[13px] ">
+                                            <div className='truncate'>{y.frames[0].title || 'No Title Frame'}</div>
+                                        </div>
+                                        <div className="flex justify-start pt-3 text-[10px] text-gray-400 truncate">{getFormattedTimestamp(y.timestamp)} by @{y.author.username}</div>
+                                        <div className="flex justify-start text-[12px]">
+                                            <div className='truncate'>
+                                                 {y.text}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="border-x border-y border-white/20">
-                            <div className="flex flex-col justify-center p-3 text-white">
-                                <div className="flex justify-start text-[13px]">{y.frames[0].title || 'No Title Frame'}</div>
-                                <div className="flex justify-start pt-3 text-[10px] text-gray-400">{getFormattedTimestamp(y.timestamp)} by @{y.author.username}</div>
-                                <div className="flex justify-start text-[12px]">{trimText(y.text)}</div>
-                            </div>
-                        </div>
-                    </div>
-                ))}
-
-                <div className='flex flex-row space-x-[6px] justify-center'>
-                    <div className={`pb-2 ${pageIdx === 0 ? 'text-gray-500' : 'text-white'}`} onClick={handleLeftArrowClick}>{"<"}</div>
-
-                    <div className='flex flex-row space-x-[6px] justify-center text-white'>
-                        {arrNo.map((x, index) => (
-                            <div className={`pt-[0.4px] ${pageIdx === index ? 'text-gray-500 underline' : ''}`} key={index} onClick={() => handleNumberClick(index)}>
-                                {x}
-                            </div>
                         ))}
-                    </div>
 
-                    <div className={`pb-2 ${pageIdx + 1 === totalPages ? 'text-gray-500' : 'text-white'}`}  onClick={handleRightArrowClick}>{">"}</div>
-                </div>
+                    <div className='flex flex-row space-x-[6px] justify-center'>
+                        <div className={`pb-2 ${pageIdx === 0 ? 'text-gray-500' : 'text-white'}`} onClick={handleLeftArrowClick}>{"<"}</div>
+
+                        <div className='flex flex-row space-x-[6px] justify-center text-white'>
+                            {arrNo.map((x, index) => (
+                                <div className={`pt-[0.4px] ${pageIdx === index ? 'text-gray-500 underline' : ''}`} key={index} onClick={() => handleNumberClick(index)}>
+                                    {x}
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className={`pb-2 ${pageIdx + 1 === totalPages ? 'text-gray-500' : 'text-white'}`}  onClick={handleRightArrowClick}>{">"}</div>
+                    </div>
+               </div>
+
              </div>
         </div>
 
