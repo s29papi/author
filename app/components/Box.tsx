@@ -100,11 +100,11 @@ export default function Box({routeName}: BoxProps) {
             min-[1024px]:pl-[140px] min-[1024px]:pr-[158px]">
 
                <div className='grid grid-cols-1 gap-8  
-                    min-[280px]:grid min-[280px]:grid-cols-1
-                    min-[360px]:grid min-[360px]:grid-cols-1
-                    min-[375px]:grid min-[375px]:grid-cols-1
-                    min-[390px]:grid min-[390px]:grid-cols-1
-                    min-[412px]:grid min-[412px]:grid-cols-1
+                    min-[280px]:grid min-[280px]:grid-cols-1 min-[280px]:gap-12
+                    min-[360px]:grid min-[360px]:grid-cols-1 min-[360px]:gap-12
+                    min-[375px]:grid min-[375px]:grid-cols-1 min-[375px]:gap-12
+                    min-[390px]:grid min-[390px]:grid-cols-1 min-[390px]:gap-12
+                    min-[412px]:grid min-[412px]:grid-cols-1 min-[412px]:gap-12
                     min-[414px]:grid min-[414px]:grid-cols-1
                     min-[430px]:grid min-[430px]:grid-cols-1
                     min-[540px]:grid min-[540px]:grid-cols-1
@@ -117,7 +117,7 @@ export default function Box({routeName}: BoxProps) {
                             <div key={index} className='' >
                                 <div className="border-x border-t border-white/20 w-70 h-50">
                                     <div className="flex justify-center bg-[#F6F3E4] w-full h-full p-[38px]">
-                                    <div className='flex justify-center '>
+                                    <div className='flex justify-center'>
                                                 <Image 
                                                     loader={imageLoader}
                                                     src={y.frames[0].image}
