@@ -16,11 +16,3 @@ export default function Header() {
     )
 }
 
-
-    // <div className="pl-24 pr-12">
-      //   <div className="flex justify-center border-y border-white/20">
-      //     <div className="text-center text-gray-400 tracking-[.11em] font-bold min-[280px]:text-[46px] min-[360px]:text-[68px] min-[364px]:text-[70px] min-[390px]:text-[77px] min-[412px]:text-[82px] min-[414px]:text-[83px] min-[430px]:text-[86px] min-[540px]:text-[112px] min-[768px]:text-[173px] min-[820px]:text-[186px] min-[912px]:text-[210px] min-[1024px]:text-[230px] min-[1280px]:text-[230px]" style={{ transform: 'scaleX(1)' }}>
-      //       ATLAS
-      //     </div>
-        
-      //   </di

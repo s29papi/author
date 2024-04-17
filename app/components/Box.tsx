@@ -172,7 +172,7 @@ export default function Box({routeName}: BoxProps) {
 }
 
 function onloadingScreen() {
-    return <div className='flex justify-center font-semibold tracking-wide' style={{paddingTop: '158px'}}>
+    return <div className='flex justify-center font-semibold tracking-wide  text-gray-400' style={{paddingTop: '158px'}}>
                 Loading...
             </div>
 }
