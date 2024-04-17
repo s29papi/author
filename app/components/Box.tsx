@@ -115,9 +115,9 @@ export default function Box({routeName}: BoxProps) {
                '>
                         {boxes.slice(startIndex, startIndex + boxesPerPage(pageIdx)).map((y, index) => (
                             <div key={index} className='' >
-                                <div className="border-x border-t border-white/20 w-70 h-64">
+                                <div className="border-x border-t border-white/20 w-70 h-50">
                                     <div className="flex justify-center bg-[#F6F3E4] w-full h-full p-[38px]">
-                                    <div className='flex justify-center'>
+                                    <div className='flex justify-center '>
                                                 <Image 
                                                     loader={imageLoader}
                                                     src={y.frames[0].image}
