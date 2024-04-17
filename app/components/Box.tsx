@@ -115,10 +115,9 @@ export default function Box({routeName}: BoxProps) {
                '>
                         {boxes.slice(startIndex, startIndex + boxesPerPage(pageIdx)).map((y, index) => (
                             <div key={index} className='' >
-                                <div className="flex justify-center border-x border-t border-white/20 w-70 h-64">
-                                    <div className="flex justify-center bg-[#F6F3E4] w-full h-full">
-                                        <div className="flex justify-center border-[38px] border-[#F6F3E4] ">
-                                            <div className='flex justify-center w-full h-full'>
+                                <div className="border-x border-t border-white/20 w-70 h-64">
+                                    <div className="flex justify-center bg-[#F6F3E4] w-full h-full p-[38px]">
+                                    <div className='flex justify-center'>
                                                 <Image 
                                                     loader={imageLoader}
                                                     src={y.frames[0].image}
@@ -129,8 +128,6 @@ export default function Box({routeName}: BoxProps) {
                                                     style={{ boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.7)' }}
                                                 />
                                             </div>
-                                        
-                                        </div>
                                     </div>
                                 </div>
                                 <div className="border-x border-y border-white/20 w-70 h-24 cursor-pointer">
@@ -166,6 +163,7 @@ export default function Box({routeName}: BoxProps) {
                     </div>
              </div>
         </div>
+
     )
 }
 
