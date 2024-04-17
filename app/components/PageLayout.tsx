@@ -4,6 +4,7 @@ import { AuthKitProvider} from '@farcaster/auth-kit';
 import NavBar from "./NavBar";
 import Header from "./Header";
 import Box from "./Box";
+import Footer from "./Footer";
 import { useState } from 'react';
 
 {/**
@@ -52,6 +53,10 @@ export default function PageLayout({ routeName }: PageLayoutProps) {
                     <NavBar onFidChange={handleFidChange}/>
                     <Header/>
                     <Box routeName={routeName} />
+                    <Footer/>
+   
+
+
                 </div>
             </AuthKitProvider>
     )

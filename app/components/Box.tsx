@@ -152,7 +152,7 @@ export default function Box({routeName}: BoxProps) {
 
     
                </div>
-               <div className='flex flex-row space-x-[6px] justify-center pt-[24px]'>
+               <div className='flex flex-row space-x-[6px] justify-center pt-[48px]'>
                         <div className={`pb-2 ${pageIdx === 0 ? 'text-gray-500' : 'text-white'}`} onClick={handleLeftArrowClick}>{"<"}</div>
 
                         <div className='flex flex-row space-x-[6px] justify-center text-white'>
@@ -172,7 +172,7 @@ export default function Box({routeName}: BoxProps) {
 }
 
 function onloadingScreen() {
-    return <div className='flex justify-center font-semibold tracking-wide  text-gray-400' style={{paddingTop: '158px'}}>
+    return <div className='flex justify-center font-semibold tracking-wide  text-gray-400' style={{paddingTop: '158px', paddingBottom: '40px'}}>
                 Loading...
             </div>
 }
