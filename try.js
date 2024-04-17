@@ -51,6 +51,7 @@ const checkFollowingCastAuthor = async (viewerFid, authorFid) => {
         });
 
         trendingCasts.casts.sort((a, b) => b.reactions.likes.length - a.reactions.likes.length);
+        
 
     } catch (error) {
         console.error("Error fetching and sorting data:", error);

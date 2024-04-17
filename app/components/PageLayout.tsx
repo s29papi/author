@@ -18,20 +18,6 @@ interface PageLayoutProps {
   }
   
 
-//   if (routeName == '/recommend') {
-//     let trendingCastsByFollowing= [];
-//     const viewerFid = fid;
-//     console.log(viewerFid)
-//     for (let i = 0; i < trendingCasts.casts.length; i++) {
-//         let isFollowing = await checkFollowingCastAuthor(viewerFid, trendingCasts.casts[i].author.fid);
-//         if (!isFollowing) continue
-//         trendingCastsByFollowing.push(trendingCasts.casts[i])
-//     }
-//     if (trendingCastsByFollowing.length == 0) return false;
-
-//     trendingCasts.casts = trendingCastsByFollowing;
-// }
-
 const config = {
     rpcUrl: 'https://opt-mainnet.g.alchemy.com/v2/WYqLLFC8PL_vzejykc3fwfS_JpbvpI66',
     siweUri: "https://example.com/login",

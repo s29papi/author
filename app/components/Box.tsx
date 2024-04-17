@@ -24,7 +24,6 @@ export default function Box({routeName}: BoxProps) {
                 if (fidStr) {
                     fid = parseInt(fidStr)
                 }
-                console.log(fid)
                 
                 if (routeName == '/') {
                     let frames = await getTrendingFrames()
@@ -45,7 +44,6 @@ export default function Box({routeName}: BoxProps) {
     }, [routeName]);
 
     if (loading) {
-        // Display loading screen while fetching data
         return onloadingScreen()
     }
     
@@ -118,17 +116,18 @@ export default function Box({routeName}: BoxProps) {
                         {boxes.slice(startIndex, startIndex + boxesPerPage(pageIdx)).map((y, index) => (
                             <div key={index} className='' >
                                 <div className="border-x border-t border-white/20 w-70 h-64">
-                                    <div className="flex justify-center bg-[#C6C8C3] w-full h-full">
-                                        <div className="border-[38px] border-[#C6C8C3] ">
-                                            <div className='flex shadow-2xl w-full h-full'>
-                                            <Image 
-                                                loader={imageLoader}
-                                                src={y.frames[0].image}
-                                                alt="Picture of the author"
-                                                width={250}
-                                                height={250}
-                                                layout="responsive"
-                                            />
+                                    <div className="flex justify-center bg-[#F6F3E4] w-full h-full">
+                                        <div className="border-[38px] border-[#F6F3E4] ">
+                                            <div className='flex  w-full h-full'>
+                                                <Image 
+                                                    loader={imageLoader}
+                                                    src={y.frames[0].image}
+                                                    alt="Picture of the author"
+                                                    width={250}
+                                                    height={250}
+                                                    layout="responsive"
+                                                    style={{ boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.7)' }}
+                                                />
                                             </div>
                                         
                                         </div>
@@ -153,28 +152,27 @@ export default function Box({routeName}: BoxProps) {
     
                </div>
                <div className='flex flex-row space-x-[6px] justify-center pt-[48px]'>
-                        <div className={`pb-2 ${pageIdx === 0 ? 'text-gray-500' : 'text-white'}`} onClick={handleLeftArrowClick}>{"<"}</div>
+                        <div className={`cursor-pointer pb-2 ${pageIdx === 0 ? 'text-gray-500' : 'text-white'}`} onClick={handleLeftArrowClick}>{"<"}</div>
 
                         <div className='flex flex-row space-x-[6px] justify-center text-white'>
                             {arrNo.map((x, index) => (
-                                <div className={`pt-[0.4px] ${pageIdx === index ? 'text-gray-500 underline' : ''}`} key={index} onClick={() => handleNumberClick(index)}>
+                                <div className={`cursor-pointer pt-[0.4px] ${pageIdx === index ? 'text-gray-500 underline' : ''}`} key={index} onClick={() => handleNumberClick(index)}>
                                     {x}
                                 </div>
                             ))}
                         </div>
 
-                        <div className={`pb-2 ${pageIdx + 1 === totalPages ? 'text-gray-500' : 'text-white'}`}  onClick={handleRightArrowClick}>{">"}</div>
+                        <div className={`pb-2 cursor-pointer ${pageIdx + 1 === totalPages ? 'text-gray-500' : 'text-white'}`}  onClick={handleRightArrowClick}>{">"}</div>
                     </div>
              </div>
         </div>
-
     )
 }
 
 function onloadingScreen() {
-    return <div className='flex justify-center font-semibold tracking-wide  text-gray-400' style={{paddingTop: '158px', paddingBottom: '40px'}}>
+    return ( <div className='flex justify-center font-semibold tracking-wide  text-gray-400' style={{paddingTop: '158px', paddingBottom: '40px'}}>
                 Loading...
-            </div>
+            </div> )
 }
 
 const fetchTrendingCasts = async () => {
@@ -266,7 +264,7 @@ async function getRecommendedFrames(fid: number) {
             return false
         }
         const url = new URL(cast.embeds[0].url);
-        return !excludedDomains.includes(url.hostname.split('.').slice(-2).join('.'));
+        return !excludedDomains.includes(url.hostname.split('.').slice(-2).join('.')) && cast.author.power_badge;
     });
 
     trendingCasts.casts.sort((a: any, b: any) => b.reactions.likes.length - a.reactions.likes.length);
@@ -294,11 +292,10 @@ async function getTrendingFrames() {
         if (!isValidUrl(validUrl)) {
             return
         }
+        
         const url = new URL(validUrl);
-        return !excludedDomains.includes(url.hostname.split('.').slice(-2).join('.'));
+        return !excludedDomains.includes(url.hostname.split('.').slice(-2).join('.')) && cast.author.power_badge;
     });
-
-    trendingCasts.casts.sort((a: any, b: any) => b.reactions.likes.length - a.reactions.likes.length);
 
     return trendingCasts.casts
 }
