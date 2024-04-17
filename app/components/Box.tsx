@@ -11,6 +11,7 @@ interface BoxProps {
   
 
 export default function Box({routeName}: BoxProps) {
+    const [loading, setLoading] = useState(true); // State to track loading status
     const [boxes, setBoxes] = useState<any[]>([]);
     const [ pageIdx, setPageIdx ] = useState(0) 
     const [startIndex, setStartIndex] = useState(0);
@@ -34,13 +35,19 @@ export default function Box({routeName}: BoxProps) {
                     let frames = await getRecommendedFrames(fid)
                     setBoxes(frames)
                 }
+                setLoading(false); // Set loading to false when data is fetched
             } catch (error) {
                 console.error("Error fetching and sorting data:", error);
+                setLoading(false); // Set loading to false in case of error
                 return false;
             }
         })();
     }, [routeName]);
 
+    if (loading) {
+        // Display loading screen while fetching data
+        return onloadingScreen()
+    }
     
     const totalPages = Math.ceil(boxes.length / 20);
     const remainingBoxes = boxes.length % 20;
@@ -127,13 +134,13 @@ export default function Box({routeName}: BoxProps) {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="border-x border-y border-white/20 w-70 h-24">
+                                <div className="border-x border-y border-white/20 w-70 h-24 cursor-pointer">
                                     <div className="flex flex-col justify-center p-3 text-white ">
-                                        <div className="flex justify-start text-[13px] ">
+                                        <div className="flex justify-start text-[16px] ">
                                             <div className='truncate'>{y.frames[0].title || 'No Title Frame'}</div>
                                         </div>
                                         <div className="flex justify-start pt-3 text-[10px] text-gray-400 truncate">{getFormattedTimestamp(y.timestamp)} by @{y.author.username}</div>
-                                        <div className="flex justify-start text-[12px]">
+                                        <div className="flex justify-start pt-1 text-[12px]">
                                             <div className='truncate'>
                                                  {y.text}
                                             </div>
@@ -162,6 +169,12 @@ export default function Box({routeName}: BoxProps) {
         </div>
 
     )
+}
+
+function onloadingScreen() {
+    return <div className='flex justify-center font-semibold tracking-wide' style={{paddingTop: '158px'}}>
+                Loading...
+            </div>
 }
 
 const fetchTrendingCasts = async () => {
