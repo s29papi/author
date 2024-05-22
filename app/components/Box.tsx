@@ -124,7 +124,7 @@ export default function Box({routeName}: BoxProps) {
                                                     alt="Picture of the author"
                                                     width={250}
                                                     height={250}
-                                                    layout="responsive"
+                                                   
                                                     style={{ boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.7)' }}
                                                 />
                                             </div>
