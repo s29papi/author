@@ -23,16 +23,16 @@ export default function NavBar({ onFidChange }: NavBarProps) {
       } = useProfile();
 
     useEffect(() => {
-        const token = localStorage.getItem('authToken');
+        const token = sessionStorage.getItem('authToken');
         if (token) {
             setIsSignedIn(true);
         }
     }, []);
 
     useEffect(() => {
-        const username = localStorage.getItem('username')
-        const pfpUrl = localStorage.getItem('pfpUrl')
-        const fid = localStorage.getItem('fid')
+        const username = sessionStorage.getItem('username')
+        const pfpUrl = sessionStorage.getItem('pfpUrl')
+        const fid = sessionStorage.getItem('fid')
         if (fid && username && pfpUrl) {
             setProfileArray([pfpUrl, username, fid]);
         }
@@ -44,26 +44,26 @@ export default function NavBar({ onFidChange }: NavBarProps) {
     };
 
     const handleSignInSuccess = (fid: number, username: string, pfpUrl: string) => {
-        localStorage.setItem('authToken', 'aaaa-bbbb-cccc-dddd');
+        sessionStorage.setItem('authToken', 'aaaa-bbbb-cccc-dddd');
         setIsSignedIn(true);
         onFidChange(fid); 
         if (username && pfpUrl && fid) {
-            localStorage.setItem('username', username);
-            localStorage.setItem('pfpUrl', pfpUrl);
-            localStorage.setItem('fid', fid.toString());
+            sessionStorage.setItem('username', username);
+            sessionStorage.setItem('pfpUrl', pfpUrl);
+            sessionStorage.setItem('fid', fid.toString());
         }
 
         if (fid && username && pfpUrl) {
             setProfileArray([pfpUrl, username, fid]);
         }
-        localStorage.setItem('justSignedIn', "true")
+        sessionStorage.setItem('justSignedIn', "true")
     };
 
     const handleSignOut = () => {
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('username');
-        localStorage.removeItem('pfpUrl');
-        localStorage.removeItem('fid');
+        sessionStorage.removeItem('authToken');
+        sessionStorage.removeItem('username');
+        sessionStorage.removeItem('pfpUrl');
+        sessionStorage.removeItem('fid');
         setIsSignedIn(false);
     };
 
@@ -73,8 +73,8 @@ export default function NavBar({ onFidChange }: NavBarProps) {
             return
         }
         
-        if (localStorage.getItem('justSignedIn') == "true") {
-            localStorage.removeItem('justSignedIn');
+        if (sessionStorage.getItem('justSignedIn') == "true") {
+            sessionStorage.removeItem('justSignedIn');
             return
         }
         

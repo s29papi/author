@@ -9,7 +9,6 @@ interface BoxProps {
     routeName: string;
 }
   
-
 export default function Box({routeName}: BoxProps) {
     const [loading, setLoading] = useState(true); // State to track loading status
     const [boxes, setBoxes] = useState<any[]>([]);
@@ -19,7 +18,7 @@ export default function Box({routeName}: BoxProps) {
     useEffect(() => {
         (async () => {
             try {
-                const fidStr = localStorage.getItem('fid')
+                const fidStr = sessionStorage.getItem('fid')
                 let fid = 0;
                 if (fidStr) {
                     fid = parseInt(fidStr)
@@ -31,13 +30,16 @@ export default function Box({routeName}: BoxProps) {
                 }
             
                 if (routeName == '/recommend' && fid > 0) {
-                    let frames = await getRecommendedFrames(fid)
+                    let frames: any;
+                    if (fidStr) {
+                        frames = await getRecommendedFrames(fidStr)
+                    }
                     setBoxes(frames)
                 }
-                setLoading(false); // Set loading to false when data is fetched
+                setLoading(false);
             } catch (error) {
                 console.error("Error fetching and sorting data:", error);
-                setLoading(false); // Set loading to false in case of error
+                setLoading(false);
                 return false;
             }
         })();
@@ -57,7 +59,7 @@ export default function Box({routeName}: BoxProps) {
         } else {
           return remainingBoxes; 
         }
-      };
+    };
 
 
     const handleNumberClick = (index: number) => {
@@ -82,8 +84,6 @@ export default function Box({routeName}: BoxProps) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
-
-    
     return (
         <div style={{paddingTop: '108px'}}>
             <div className="
@@ -99,7 +99,7 @@ export default function Box({routeName}: BoxProps) {
             min-[820px]:pl-[84px] min-[820px]:pr-[84px] 
             min-[1024px]:pl-[140px] min-[1024px]:pr-[158px]">
 
-               <div className='grid grid-cols-1 gap-8  
+               <div className='grid grid-cols-1 gap-10 
                     min-[280px]:grid min-[280px]:grid-cols-1 min-[280px]:gap-12
                     min-[360px]:grid min-[360px]:grid-cols-1 min-[360px]:gap-12
                     min-[375px]:grid min-[375px]:grid-cols-1 min-[375px]:gap-12
@@ -113,14 +113,14 @@ export default function Box({routeName}: BoxProps) {
                     min-[1024px]:grid min-[1024px]:grid-cols-3 justify-center
                     
                '>
-                        {boxes.slice(startIndex, startIndex + boxesPerPage(pageIdx)).map((y, index) => (
+                        {boxes.slice(startIndex, startIndex + boxesPerPage(pageIdx)).map((frame, index) => (
                             <div key={index} className='' >
                                 <div className="border-x border-t border-white/20 w-70 h-50">
-                                    <div className="flex justify-center bg-[#F6F3E4] w-full h-full p-[38px]">
-                                    <div className='flex justify-center'>
+                                    <div className="flex justify-center bg-[#F6F3E4] w-full h-[16rem] p-[38px]">
+                                            <div className='flex justify-center'>
                                                 <Image 
                                                     loader={imageLoader}
-                                                    src={y.frames[0].image}
+                                                    src={frame.image_url}
                                                     alt="Picture of the author"
                                                     width={250}
                                                     height={250}
@@ -133,12 +133,12 @@ export default function Box({routeName}: BoxProps) {
                                 <div className="border-x border-y border-white/20 w-70 h-24 cursor-pointer">
                                     <div className="flex flex-col justify-center p-3 text-white ">
                                         <div className="flex justify-start text-[16px] ">
-                                            <div className='truncate'>{y.frames[0].title || 'No Title Frame'}</div>
+                                            <div className='truncate'>{frame.frames_title || 'No Title Frame'}</div>
                                         </div>
-                                        <div className="flex justify-start pt-3 text-[10px] text-gray-400 truncate">{getFormattedTimestamp(y.timestamp)} by @{y.author.username}</div>
+                                        <div className="flex justify-start pt-3 text-[10px] text-gray-400 truncate">{getFormattedTimestamp(frame.timestamp)} by @{frame.author_username}</div>
                                         <div className="flex justify-start pt-1 text-[12px]">
                                             <div className='truncate'>
-                                                 {y.text}
+                                                 {frame.text}
                                             </div>
                                         </div>
                                     </div>
@@ -173,41 +173,17 @@ function onloadingScreen() {
             </div> )
 }
 
-const fetchTrendingCasts = async () => {
-    const response = await fetch('https://api.neynar.com/v2/farcaster/feed/frames?limit=100', {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json",
-            "api_key": "NEYNAR_API_DOCS",
-        }
-    });
-    const dataJson = await response.json();
-    return dataJson;
-};
 
-const getBulkFollowingFrameAuthors = async (viewerFid: number, authorFid: string) => {
-    const response = await fetch(`https://api.neynar.com/v2/farcaster/user/bulk?fids=${authorFid}&viewer_fid=${viewerFid}`, {
-        method: 'GET',
-        headers: {
-            "Content-Type": "application/json",
-            "api_key": "NEYNAR_API_DOCS",
-        }
-    });
-    const dataJson = await response.json();
-    const usersData = dataJson.users 
 
-    if (!usersData) return false; 
-    
-    return usersData
-}
-
-function getFormattedTimestamp(dateString: string) {
-    const date = new Date(dateString);
-
-    const options: any = { weekday: 'short', month: 'short', day: '2-digit' };
+function getFormattedTimestamp(timestamp: number) {
+    const date = new Date(timestamp * 1000);
+    const options: Intl.DateTimeFormatOptions = {
+        weekday: 'short', month: 'short', day: '2-digit'
+    };
     const formattedDate = date.toLocaleDateString('en-US', options);
-    return formattedDate
+    return formattedDate;
 }
+
 
 function trimText(text: string) {
     if (typeof text !== 'string') {
@@ -227,86 +203,55 @@ function trimText(text: string) {
     return trimmedSentence;
 }
 
-async function getRecommendedFrames(fid: number) {
-    let trendingCasts = await fetchTrendingCasts();
-    let trendingCastsByFollowing= [];
-    let authurFids = [];
-
-    for (let i = 0; i < trendingCasts.casts.length; i++) {
-        authurFids.push(trendingCasts.casts[i].author.fid)
-    }
-    const encodedauthurFids = authurFids.join(',');
-    const encodedQueryString = encodeURIComponent(encodedauthurFids);
-    
-    let frameAuthors = await getBulkFollowingFrameAuthors(fid, encodedQueryString)
-    for (let i = 0; i < trendingCasts.casts.length; i++) {
-        if (frameAuthors[i].viewer_context.following) {
-            trendingCastsByFollowing.push(trendingCasts.casts[i])
+async function getRecommendedFrames(fid: string) {
+    try {
+        let response: any;
+        let dataJson: any;
+        let recommendedUrl = process.env.NEXT_PUBLIC_RECOMMENDED_FRAME_URL
+        if (recommendedUrl) {
+            response = await fetch(recommendedUrl, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer" +  " " + process.env.NEXT_PUBLIC_AUTH_KEY,
+                },
+                body: JSON.stringify({
+                    "viewer_fid": fid,
+                })
+            });
+            dataJson = await response.json();
         }
+        return dataJson;
+    } catch (error) {
+        console.error("Error fetching trending frames:", error);
+        return []
     }
-
-    if (trendingCastsByFollowing.length == 0) return [];
-
-    trendingCasts.casts = trendingCastsByFollowing;
-    trendingCasts.casts = trendingCasts.casts.filter((cast: any) => {
-        const excludedDomains = [
-            "zora.co",
-            "highlight.xyz",
-            "manifold.xyz",
-            "opensea.io",
-            "foundation.app",
-            "basepaint.xyz"
-        ];
-        
-        if (cast.embeds[0].url === undefined) {
-            return false
-        }
-        const url = new URL(cast.embeds[0].url);
-        return !excludedDomains.includes(url.hostname.split('.').slice(-2).join('.')) && cast.author.power_badge;
-    });
-
-    trendingCasts.casts.sort((a: any, b: any) => b.reactions.likes.length - a.reactions.likes.length);
-    return trendingCasts.casts
 }
 
 async function getTrendingFrames() {
-    let trendingCasts = await fetchTrendingCasts();
-    
-      
-    trendingCasts.casts = trendingCasts.casts.filter((cast: any) => {
-        const excludedDomains = [
-            "zora.co",
-            "highlight.xyz",
-            "manifold.xyz",
-            "opensea.io",
-            "foundation.app",
-            "basepaint.xyz"
-        ];
-        
-        if (cast.embeds[0].url === undefined) {
-            return false
+    try {
+        let response: any;
+        let dataJson: any;
+        let trendingUrl = process.env.NEXT_PUBLIC_TRENDING_FRAME_URL
+        if (trendingUrl) {
+            response = await fetch(trendingUrl, {
+                method: 'GET',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer" +  " " + process.env.NEXT_PUBLIC_AUTH_KEY,
+                }
+            });
+            dataJson = await response.json();
         }
-        const validUrl = makeValidUrl(cast.embeds[0].url);
-        if (!isValidUrl(validUrl)) {
-            return
-        }
-        
-        const url = new URL(validUrl);
-        return !excludedDomains.includes(url.hostname.split('.').slice(-2).join('.')) && cast.author.power_badge;
-    });
-
-    return trendingCasts.casts
-}
-
-function makeValidUrl(url: string) {
-    if (!url.startsWith('http://') && !url.startsWith('https://')) {
-        return `https://${url}`;
+        return dataJson;
+    } catch (error) {
+        console.error("Error fetching trending frames:", error);
+        return []
     }
-    return url;
 }
 
 
-function isValidUrl(url: string) {
-    const pattern = /^(?:https?|ftp):\/\/[\w.-]+(?:\.[\w.-]+)+[\w\-._~:/?#[\]@!$&'()*+,;=%]+$/;
-    return pattern.test(url);
-}
+
+
+
+

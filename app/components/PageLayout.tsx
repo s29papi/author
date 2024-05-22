@@ -40,9 +40,6 @@ export default function PageLayout({ routeName }: PageLayoutProps) {
                     <Header/>
                     <Box routeName={routeName} />
                     <Footer/>
-   
-
-
                 </div>
             </AuthKitProvider>
     )
