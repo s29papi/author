@@ -135,6 +135,9 @@ export default function Box({routeName}: BoxProps) {
 
     const handleUserSaveOrRemove = async (DataId: string, UserFid: string) => {
         toggleModal({ DataId: "", FrameUrl: "" });
+        if (UserFid == "") {
+            return
+        }
         let resp: any;
         if (routeName == "/save") {
           resp = await removeUserFrames(UserFid, DataId);
