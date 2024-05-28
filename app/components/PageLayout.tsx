@@ -35,7 +35,7 @@ export default function PageLayout({ routeName }: PageLayoutProps) {
     
     return (      
             <AuthKitProvider config={config}>
-                <div className='flex flex-col min-h-screen' style={{backgroundColor: '#131115'}}>
+                <div className='flex flex-col min-h-screen' style={{backgroundColor: 'black'}}>
                     <NavBar onFidChange={handleFidChange}/>
                     <Header/>
                     <Box routeName={routeName} />

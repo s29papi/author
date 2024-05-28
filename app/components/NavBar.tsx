@@ -3,7 +3,9 @@ import { useState, useEffect } from 'react';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { RxCross1 } from "react-icons/rx";
 import { IconContext } from "react-icons";
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
+
+
 import { useProfile } from '@farcaster/auth-kit';
 import Image from 'next/image'
 
@@ -81,9 +83,14 @@ export default function NavBar({ onFidChange }: NavBarProps) {
         setIsProfileButtonClicked(true) 
     }
 
+    const handleNavButtonClick = (navbutton: string) => {
+        router.push(`/${navbutton}`);
+        
+    }
+
     return (
         <IconContext.Provider value={{ size: "1.6em", color: "white"}}>
-            <div style={{ position: "fixed", width: "100%", zIndex: 1000, backgroundColor: "#131115"}}>
+            <div style={{ position: "fixed", width: "100%", zIndex: 1000, backgroundColor: "black"}}>
                 <div className='flex flex-row justify-between pl-12 pr-12 pt-10 pb-10
                 min-[768px]:pt-2 min-[768px]:pb-2
                 '>
@@ -93,13 +100,13 @@ export default function NavBar({ onFidChange }: NavBarProps) {
 
                     <div className='hidden md:flex flex-row  text-base text-gray-400'>
                         <div className='md:flex flex-row space-x-8 md:pr-10 md:pt-[45px] md:text-lg'>
-                            <div className='hover:text-white cursor-pointer' onClick={() => router.push('/trending')}>
+                            <div className={`${usePathname() == '/' ? 'text-white' : ''} cursor-pointer`} onClick={() => handleNavButtonClick('trending')}>
                                 Trending
                             </div>
-                            <div className='hover:text-white cursor-pointer' onClick={() => router.push('/recommend')}>
+                            <div className={`${usePathname() == '/recommend' ? 'text-white' : 'hover:text-white'}  cursor-pointer`} onClick={() => handleNavButtonClick('recommend')}>
                                 Recommend
                             </div>
-                            <div className='hover:text-white cursor-pointer'>
+                            <div className={`${usePathname() == '/save' ? 'text-white' : 'hover:text-white'}  cursor-pointer`} onClick={() => handleNavButtonClick('save')}>
                                 Save
                             </div>
                         </div>
@@ -150,7 +157,7 @@ export default function NavBar({ onFidChange }: NavBarProps) {
                             <ul className='text-lg p-16'>
                                 <li className='cursor-pointer flex justify-center' onClick={() => router.push('/trending')}>Trending</li>
                                 <li className='cursor-pointer flex justify-center p-4' onClick={() => router.push('/recommend')}>Recommend</li>
-                                <li className='cursor-pointer flex justify-center'>Save</li>
+                                <li className='cursor-pointer flex justify-center' onClick={() => router.push('/save')}>Save</li>
                                 <li className='cursor-pointer flex justify-center p-4'>
                                     {isSignedIn ? (
                                         <div className='flex flex-col space-y-2'>
@@ -166,7 +173,7 @@ export default function NavBar({ onFidChange }: NavBarProps) {
                                                                 borderRadius: "50%"
                                                             }}
                                                         />
-                                                    </div>
+                                                    </div>       
                                                     <div>{profileArray[1]}</div>
                                             </div>
     
@@ -199,3 +206,8 @@ export default function NavBar({ onFidChange }: NavBarProps) {
 const imageLoader = ({ src, width, quality }: any) => {
     return src
 }
+
+
+
+
+// NEXT_PUBLIC_TRENDING_FRAME_URL=https://atlas-backend-b89s.onrender.com/api/service/get-trending-frames
