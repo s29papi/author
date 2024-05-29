@@ -308,6 +308,9 @@ function getFormattedTimestamp(timestamp: number) {
 }
 
 async function getRecommendedFrames(fid: string) {
+    if (fid || fid == "") {
+        return 
+    }
     try {
         let response: any;
         let dataJson: any;
@@ -356,6 +359,9 @@ async function getTrendingFrames() {
 }
 
 async function getSavedFrames(userfid: string) {
+    if (userfid && userfid == "") {
+        return 
+    }
     try {
         let response: any;
         let dataJson: any;
@@ -381,7 +387,9 @@ async function getSavedFrames(userfid: string) {
 }
 
 async function saveUserFrames(userfid: string, dataid: string) {
-
+    if (userfid && userfid == "") {
+        return 
+    }
     try {
         let response: any;
         let dataJson: any;
@@ -409,6 +417,9 @@ async function saveUserFrames(userfid: string, dataid: string) {
 }
 
 async function removeUserFrames(userfid: string, dataid: string) {
+    if (userfid && userfid == "") {
+        return 
+    }
     try {
         let response: any;
         let dataJson: any;
