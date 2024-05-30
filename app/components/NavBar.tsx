@@ -94,7 +94,7 @@ export default function NavBar({ onFidChange }: NavBarProps) {
                 <div className='flex flex-row justify-between pl-12 pr-12 pt-10 pb-10
                 min-[768px]:pt-2 min-[768px]:pb-2
                 '>
-                    <div className='cursor-pointer text-white text-xl md:text-3xl md:pl-10 md:pt-10 md:pb-6 lg:pl-24'>
+                    <div className='cursor-pointer text-white text-xl md:text-3xl md:pl-10 md:pt-10 md:pb-6 lg:pl-24' onClick={() => handleNavButtonClick('trending')}>
                         ATLAS
                     </div>
 
@@ -210,4 +210,3 @@ const imageLoader = ({ src, width, quality }: any) => {
 
 
 
-// NEXT_PUBLIC_TRENDING_FRAME_URL=https://atlas-backend-b89s.onrender.com/api/service/get-trending-frames
