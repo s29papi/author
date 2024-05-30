@@ -46,8 +46,9 @@ export default function Box({routeName}: BoxProps) {
                         let frames: any;
                         if (fidStr) {
                             frames = await getRecommendedFrames(fidStr)
+                            console.log(frames)
                         }
-                        setBoxes(frames)
+                            setBoxes(frames)
                     }
                     setEmptyBoxMsg("Your Followings Are Yet To Make A Frame Post")
                 }
@@ -308,7 +309,7 @@ function getFormattedTimestamp(timestamp: number) {
 }
 
 async function getRecommendedFrames(fid: string) {
-    if (fid || fid == "") {
+    if (fid == "") {
         return 
     }
     try {
@@ -359,7 +360,7 @@ async function getTrendingFrames() {
 }
 
 async function getSavedFrames(userfid: string) {
-    if (userfid && userfid == "") {
+    if (userfid == "") {
         return 
     }
     try {
@@ -388,7 +389,7 @@ async function getSavedFrames(userfid: string) {
 
 async function saveUserFrames(userfid: string, dataid: string) {
     if (userfid && userfid == "") {
-        return []
+        return
     }
     try {
         let response: any;
