@@ -388,7 +388,7 @@ async function getSavedFrames(userfid: string) {
 
 async function saveUserFrames(userfid: string, dataid: string) {
     if (userfid && userfid == "") {
-        return 
+        return []
     }
     try {
         let response: any;
